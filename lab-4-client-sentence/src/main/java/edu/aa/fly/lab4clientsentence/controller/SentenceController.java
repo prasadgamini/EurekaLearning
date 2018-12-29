@@ -1,5 +1,7 @@
 package edu.aa.fly.lab4clientsentence.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -14,19 +16,24 @@ import java.util.List;
 @RestController
 public class SentenceController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(SentenceController.class);
+
     @Autowired
     private DiscoveryClient discoveryClient;
 
     @Autowired
     private LoadBalancerClient loadBalancerClient;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     @GetMapping("/sentence")
     public String getSentence() {
-        return getWordWithRibbon("LAB-4-CLIENT-SUBJECT") + " "
-                + getWordWithRibbon("LAB-4-CLIENT-VERB") + " "
-                + getWordWithRibbon("LAB-4-CLIENT-ARTICLE") + " "
-                + getWordWithRibbon("LAB-4-CLIENT-ADJECTIVE") + " "
-                + getWordWithRibbon("LAB-4-CLIENT-NOUN") + ".";
+        return getWordWithRibbonRestTemplate("LAB-4-CLIENT-SUBJECT") + " "
+                + getWordWithRibbonRestTemplate("LAB-4-CLIENT-VERB") + " "
+                + getWordWithRibbonRestTemplate("LAB-4-CLIENT-ARTICLE") + " "
+                + getWordWithRibbonRestTemplate("LAB-4-CLIENT-ADJECTIVE") + " "
+                + getWordWithRibbonRestTemplate("LAB-4-CLIENT-NOUN") + ".";
     }
 
     public String getWord(String service) {
@@ -53,5 +60,11 @@ public class SentenceController {
             return (new RestTemplate()).getForObject(uri, String.class);
         }
         return null;
+    }
+
+
+    public String getWordWithRibbonRestTemplate(String service) {
+        LOGGER.info("Inside getWordWithRibbonRestTemplate Service name : {}", service);
+        return restTemplate.getForObject("http://" + service, String.class);
     }
 }
