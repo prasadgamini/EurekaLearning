@@ -43,6 +43,11 @@ public class SentenceController {
     public String getWordWithRibbon(String service) {
         ServiceInstance serviceInstance = loadBalancerClient.choose(service);
 
+        /**
+         * Making calls using serviceIntance is not a good approach...
+         * We need some declarative approach.
+         * For that we need Feign. For now this is learning Ribbon.
+         */
         URI uri = serviceInstance.getUri();
         if (uri != null) {
             return (new RestTemplate()).getForObject(uri, String.class);
