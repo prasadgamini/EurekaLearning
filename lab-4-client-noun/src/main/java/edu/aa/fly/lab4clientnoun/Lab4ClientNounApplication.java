@@ -1,4 +1,4 @@
-package edu.aa.fly.lab4clientadjective;
+package edu.aa.fly.lab4clientnoun;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication (scanBasePackages = "edu.aa.fly")
 @EnableDiscoveryClient
-public class Lab4ClientAdjectiveApplication {
+public class Lab4ClientNounApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Lab4ClientAdjectiveApplication.class, args);
+        SpringApplication.run(Lab4ClientNounApplication.class, args);
     }
 
 }

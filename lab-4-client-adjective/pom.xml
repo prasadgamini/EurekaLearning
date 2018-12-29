@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>edu.aa.fly</groupId>
-    <artifactId>lab-4-client-article</artifactId>
+    <artifactId>lab-4-client-adjective</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>lab-4-client-article</name>
+    <name>lab-4-client-adjective</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

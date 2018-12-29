@@ -11,7 +11,7 @@ public class HelloController {
     private String words;
 
     @GetMapping("/")
-    public String giveAdjective() {
+    public String giveNoun() {
         String[] wordArray = words.split(",");
         int i = (int) Math.round(Math.random() * (wordArray.length - 1));
         return wordArray[i];
