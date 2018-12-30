@@ -29,11 +29,13 @@ public class SentenceController {
 
     @GetMapping("/sentence")
     public String getSentence() {
-        return getWordWithRibbonRestTemplate("LAB-4-CLIENT-SUBJECT") + " "
+        String sentence = getWordWithRibbonRestTemplate("LAB-4-CLIENT-SUBJECT") + " "
                 + getWordWithRibbonRestTemplate("LAB-4-CLIENT-VERB") + " "
                 + getWordWithRibbonRestTemplate("LAB-4-CLIENT-ARTICLE") + " "
                 + getWordWithRibbonRestTemplate("LAB-4-CLIENT-ADJECTIVE") + " "
                 + getWordWithRibbonRestTemplate("LAB-4-CLIENT-NOUN") + ".";
+        LOGGER.info("Sentence Controller; sentence -> {}", sentence);
+        return sentence;
     }
 
     public String getWord(String service) {
